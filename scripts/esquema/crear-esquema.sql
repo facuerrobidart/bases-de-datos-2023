@@ -47,7 +47,8 @@ IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'perso
 BEGIN
     CREATE TABLE personal_jerarquico (
         id_personal INT PRIMARY KEY,
-        numero_area INT ,  
+        numero_area INT NOT NULL,  
+        fecha_de_inicio DATE NOT NULL,
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );

@@ -1,0 +1,4 @@
+-- nos olvidamos fecha_de_inicio en el MLR, se agrego al MLR y DDL
+-- las aclaraciones de cada tabla se encuantran en su respectivo file. Ejemplo personal profesional cubre el rango de 11 a 100 en personal
+-- si se modifica algo porfa aclararlo en dichos comentario de cada file
+-- como el dockerfile guarda los cambios en la bd, seria recomendable para probar el funcionamiento punta a punta se inicie todo de 0, se podria hacer un script que la levante de 0 en cada start del container
