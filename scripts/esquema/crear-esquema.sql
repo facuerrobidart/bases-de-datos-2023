@@ -148,6 +148,7 @@ END;
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cumple')
 BEGIN
     CREATE TABLE cumple (
+        -- Un personal puede cumplir varias franjas horarias, pero solo una por area
         id_personal INT,
         id_franja INT,
         numero_area INT,
