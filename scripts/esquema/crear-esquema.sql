@@ -1,4 +1,3 @@
-BEGIN TRANSACTION;
 -- SI SE VAN A AGREGAR MÁS TABLAS ACÁ, POR FAVOR HACERLO EN EL ORDEN DEL ARCHIVO DEL MLR
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'nivel_seguridad')
@@ -121,5 +120,69 @@ BEGIN
         id_personal INT NOT NULL,
         FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
+    );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'bajo_contrato_en')
+BEGIN
+    CREATE TABLE bajo_contrato_en (
+        id_contrato INT,
+        id_personal INT,
+        numero_area INT,
+        PRIMARY KEY (id_contrato, id_personal, numero_area),
+        FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
+        FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
+    );
+END;
+
+
+IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'franja_horaria')
+BEGIN
+    CREATE TABLE franja_horaria (
+        id_franja INT PRIMARY KEY,
+        hora_inicio TIME NOT NULL,
+        hora_fin TIME NOT NULL
+    );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cumple')
+BEGIN
+    CREATE TABLE cumple (
+        id_personal INT,
+        id_franja INT,
+        numero_area INT,
+        PRIMARY KEY (id_personal, id_franja),
+        FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+        FOREIGN KEY (id_franja) REFERENCES franja_horaria(id_franja),
+        FOREIGN KEY (numero_area) REFERENCES area(numero_area)
+    );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'es_accedida')
+BEGIN
+    CREATE TABLE es_accedida (
+        timestamp DATETIME NOT NULL,
+        id_personal INT NOT NULL,
+        numero_area INT NOT NULL,
+        metodo_de_acceso VARCHAR(100) NOT NULL,
+        estado_lector_huellas VARCHAR(20) NOT NULL,
+        ingreso_o_egreso VARCHAR(20) NOT NULL,
+        es_autorizado BIT NOT NULL,
+        PRIMARY KEY (timestamp, id_personal, numero_area),
+        FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+        FOREIGN KEY (numero_area) REFERENCES area(numero_area)
+    );
+END;
+
+IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'acepta')
+BEGIN
+    CREATE TABLE acepta (
+        id_personal INT NOT NULL,
+        id_contrato INT NOT NULL,
+        numero_area INT NOT NULL,
+        PRIMARY KEY (id_personal, id_contrato),
+        FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+        FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
+        FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
 END;

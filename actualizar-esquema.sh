@@ -14,5 +14,7 @@ SQL_SERVER_DATABASE="master"
 # Armo los parametros de conexion
 CONNECTION_STRING="-S $SQL_SERVER_IP -U $SQL_SERVER_USERNAME -P $SQL_SERVER_PASSWORD -d $SQL_SERVER_DATABASE"
 
+echo "Aplicando cambios al esquema..."
+
 # Mando el script al contenerdor y lo ejecuto
 cat ./scripts/esquema/crear-esquema.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
