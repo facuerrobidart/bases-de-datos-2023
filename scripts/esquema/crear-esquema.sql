@@ -186,16 +186,3 @@ BEGIN
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
 END;
-
-IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'trabajan')
-BEGIN
-    CREATE TABLE trabajan (
-        id_personal_no_profesional INT NOT NULL,
-        id_franja INT NOT NULL,
-        numero_area INT NOT NULL,
-        PRIMARY KEY (id_personal_no_profesional, id_franja, numero_area),
-        FOREIGN KEY (id_personal_no_profesional) REFERENCES personal_no_profesional(id_personal),
-        FOREIGN KEY (id_franja) REFERENCES franja_horaria(id_franja),
-        FOREIGN KEY (numero_area) REFERENCES area(numero_area)
-    );
-END;
