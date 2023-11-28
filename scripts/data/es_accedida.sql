@@ -11,7 +11,7 @@ BEGIN
     DECLARE @MetodoDeAcceso VARCHAR(100) = CASE WHEN RAND() > 0.5 THEN 'Tarjeta' ELSE 'Huella' END;
     DECLARE @EstadoLectorHuellas VARCHAR(20) = CASE WHEN RAND() > 0.5 THEN 'Activo' ELSE 'Inactivo' END;
     DECLARE @IngresoOEgreso VARCHAR(20) = CASE WHEN RAND() > 0.5 THEN 'Ingreso' ELSE 'Egreso' END;
-    DECLARE @EsAutorizado BIT = CAST(RAND() > 0.2 AS BIT); -- 80% de probabilidad de ser autorizado
+    DECLARE @EsAutorizado BIT = CAST(CASE WHEN RAND() > 0.2 THEN 1 ELSE 0 END AS BIT); -- 80% de probabilidad de ser autorizado
 
     -- Verificar que id_personal no esté en el rango del 91 al 100
     WHILE @IdPersonalAcceso BETWEEN 91 AND 100
