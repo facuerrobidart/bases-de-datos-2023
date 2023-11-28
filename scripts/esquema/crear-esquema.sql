@@ -148,11 +148,11 @@ END;
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cumple')
 BEGIN
     CREATE TABLE cumple (
-        -- Un personal puede cumplir varias franjas horarias, pero solo una por area
+        -- Un personal puede cumplir varias franjas horarias y puede acceder a varias areas en cada franja
         id_personal INT,
         id_franja INT,
         numero_area INT,
-        PRIMARY KEY (id_personal, id_franja),
+        PRIMARY KEY (id_personal, id_franja, numero_area),
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (id_franja) REFERENCES franja_horaria(id_franja),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
