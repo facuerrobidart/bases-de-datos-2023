@@ -1,0 +1,15 @@
+[
+    {
+      $match: {
+        precio: {
+          $gt: 100
+        },
+        precio: {
+          $lt: 200
+        }
+      }
+    },
+    {
+      $count: "Articulos mayores a 100"
+    }
+  ]

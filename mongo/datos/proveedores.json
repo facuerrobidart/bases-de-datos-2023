@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "nombre": "Proveedor A",
+      "contacto": {
+        "nombre_persona_contacto": "Jorge Martínez",
+        "correo": "jorge@proveedora.com",
+        "telefono": "111-222-3333"
+      },
+      "articulos_provistos": [1, 2]
+    },
+    {
+      "id": 2,
+      "nombre": "Proveedor B",
+      "contacto": {
+        "nombre_persona_contacto": "Ana García",
+        "correo": "ana@provider.com",
+        "telefono": "444-555-6666"
+      },
+      "articulos_provistos": [3]
+    }
+  ]
+  

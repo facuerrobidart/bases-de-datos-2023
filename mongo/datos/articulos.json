@@ -1,0 +1,41 @@
+[
+    {
+      "id": 1,
+      "nombre": "Laptop HP Pavilion",
+      "descripcion": "Laptop con procesador Intel Core i5, 8GB RAM, 512GB SSD, pantalla de 15.6 pulgadas",
+      "marca": "HP",
+      "categoria": "Laptops",
+      "precio": 799.99,
+      "disponibilidad": true,
+      "stock": 20
+    },
+    {
+      "id": 2,
+      "nombre": "Monitor LG UltraWide",
+      "descripcion": "Monitor IPS de 29 pulgadas con resolución 2560x1080, tecnología FreeSync",
+      "marca": "LG",
+      "categoria": "Monitores",
+      "precio": 299.50,
+      "stock": 15,
+      "caracteristicas": {
+        "resolucion": "2560x1080",
+        "tipo_panel": "IPS",
+        "tecnologia": "FreeSync"
+      }
+    },
+    {
+      "id": 3,
+      "nombre": "Teclado mecánico Corsair K70 RGB",
+      "marca": "Corsair",
+      "categoria": "Periféricos",
+      "precio": 149.99,
+      "disponibilidad": false,
+      "stock": 0,
+      "detalles": {
+        "tipo": "Teclado mecánico",
+        "iluminacion": "RGB",
+        "switches": "Cherry MX Brown"
+      }
+    }
+  ]
+  

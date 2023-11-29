@@ -1,0 +1,1 @@
+{precio: {$gte: 100}, precio: {$lte: 200}}

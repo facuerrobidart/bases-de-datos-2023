@@ -1,0 +1,41 @@
+[
+    {
+      "id": 1,
+      "nombre": "Juan Pérez",
+      "correo": "juan@example.com",
+      "telefono": "123-456-7890",
+      "direccion": {
+        "calle": "Av. Principal",
+        "numero": 123,
+        "ciudad": "Ciudad de Ejemplo"
+      }
+    },
+    {
+      "id": 2,
+      "nombre": "María García",
+      "correo": "maria@example.com",
+      "telefono": "987-654-3210",
+      "intereses": ["Tecnología", "Deportes"],
+      "envios": [
+        {
+          "direccion": {
+            "calle": "Calle Secundaria",
+            "numero": 45,
+            "ciudad": "Otra Ciudad"
+          },
+          "metodo": "Express"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Carlos Rodríguez",
+      "telefono": "555-555-5555",
+      "suscripcion": {
+        "tipo": "Premium",
+        "fecha_inicio": "2023-01-15",
+        "beneficios": ["Envío gratuito", "Soporte prioritario"]
+      }
+    }
+  ]
+  
