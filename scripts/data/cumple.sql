@@ -1,4 +1,4 @@
-INSERT INTO cumple (id_personal_no_profesional, id_franja, numero_area) VALUES 
+INSERT INTO cumple (id_personal, id_franja, numero_area) VALUES 
     (104, 1, 1), 
     (104, 1, 6),
     (104, 1, 8),
