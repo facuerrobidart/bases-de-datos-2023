@@ -28,8 +28,8 @@ public class TRX_CREAR_PERSONAL_JERARQUICO extends Query {
             
             stmt.executeUpdate("INSERT INTO personal_jerarquico (id_personal, numero_area, fecha_de_inicio)"
             		+ "VALUES "
-            		+ "("+ registro.getIdPersonal() +", '"+registro.getNumero_area()+"', '"+registro.getFecha_de_inicio()+"',3)");
-            //	    + "("+ registro.getIdPersonal() +", '"+registro.getNumero_area()+"', '"+registro.getFecha_de_inicio()+"')");
+                  + "("+ registro.getIdPersonal() +", '"+registro.getNumero_area()+"', '"+registro.getFecha_de_inicio()+"')");
+            //+ "("+ registro.getIdPersonal() +", '"+registro.getNumero_area()+"', '"+registro.getFecha_de_inicio()+"',3)");
             conexion.commit(); 
             System.out.println("Transaccion completada exitosamente");
         } catch (SQLException e) {
