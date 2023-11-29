@@ -5,11 +5,11 @@ DECLARE @ContadorAcceso INT = 1;
 WHILE @ContadorAcceso <= 500
 BEGIN
     -- Generar datos aleatorios
-    DECLARE @FechaHoraAcceso DATETIME = DATEADD(SECOND, -RAND() * 86400, '2023-11-26'); -- Entre '2023-11-26' y el pasado
+    DECLARE @FechaHoraAcceso DATETIME = DATEADD(SECOND, -RAND() * 86400, GETDATE()); -- Entre hoy y el pasado
     DECLARE @IdPersonalAcceso INT = CAST(RAND() * 150 + 1 AS INT);
     DECLARE @NumeroAreaAcceso INT = CAST(RAND() * 15 + 1 AS INT);
     DECLARE @MetodoDeAcceso VARCHAR(100) = CASE WHEN RAND() > 0.5 THEN 'Contraseña' ELSE 'Huella' END;
-    DECLARE @EstadoLectorHuellas VARCHAR(20) = CASE WHEN RAND() > 0.5 THEN 'Activo' ELSE 'Inactivo' END;
+    DECLARE @EstadoLectorHuellas VARCHAR(20) = CASE WHEN @MetodoDeAcceso = 'Huella' THEN 'Activo' ELSE 'Inactivo' END;
     DECLARE @IngresoOEgreso VARCHAR(20) = CASE WHEN RAND() > 0.5 THEN 'Ingreso' ELSE 'Egreso' END;
     DECLARE @EsAutorizado BIT = CAST(CASE WHEN RAND() > 0.2 THEN 1 ELSE 0 END AS BIT); -- 80% de probabilidad de ser autorizado
 
@@ -30,4 +30,4 @@ END;
 
 -- id_personal puede ser un valor entre 1 al 150, menos los numeros del 91 al 100
 -- el numero de area va del 1 al  15 
--- el timestamp no puede ser en un futuro, siempre del 26 nov de 2023 para atras
+-- el timestamp no puede ser en un futuro, siempre de hoy para atras
