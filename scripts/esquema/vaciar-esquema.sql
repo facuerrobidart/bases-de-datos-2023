@@ -19,3 +19,55 @@ DROP TABLE IF EXISTS bajo_contrato_en, acepta, es_accedida, cumple, franja_horar
 
 -- Activar la verificación de claves foráneas
 EXEC sp_msforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT ALL'
+
+
+-- Eliminar todos los stored procedures
+DECLARE @procedureName NVARCHAR(MAX)
+DECLARE curProcedure CURSOR FOR
+SELECT [name] FROM sys.procedures
+
+OPEN curProcedure
+FETCH NEXT FROM curProcedure INTO @procedureName
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    EXEC('DROP PROCEDURE ' + @procedureName)
+    FETCH NEXT FROM curProcedure INTO @procedureName
+END
+
+CLOSE curProcedure
+DEALLOCATE curProcedure
+
+-- Eliminar todas las vistas (views)
+DECLARE @viewName NVARCHAR(MAX)
+DECLARE curView CURSOR FOR
+SELECT [name] FROM sys.views
+
+OPEN curView
+FETCH NEXT FROM curView INTO @viewName
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    EXEC('DROP VIEW ' + @viewName)
+    FETCH NEXT FROM curView INTO @viewName
+END
+
+CLOSE curView
+DEALLOCATE curView
+
+-- Eliminar todos los triggers
+DECLARE @triggerName NVARCHAR(MAX)
+DECLARE curTrigger CURSOR FOR
+SELECT [name] FROM sys.triggers
+
+OPEN curTrigger
+FETCH NEXT FROM curTrigger INTO @triggerName
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    EXEC('DROP TRIGGER ' + @triggerName)
+    FETCH NEXT FROM curTrigger INTO @triggerName
+END
+
+CLOSE curTrigger
+DEALLOCATE curTrigger

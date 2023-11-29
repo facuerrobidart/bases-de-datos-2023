@@ -13,4 +13,3 @@ AS
     --Y de nuevo para validar que sean las miasmas que en el cumple
     INNER JOIN area a2 ON a2.numero_area = c.numero_area AND a2.nivel = ns.nivel
     WHERE c.numero_area = a1.numero_area
-GO;

@@ -35,8 +35,12 @@ cat ./scripts/data/contrato_de_trabajo.sql | docker exec -i $SQL_SERVER_CONTAINE
 cat ./scripts/data/auditoria.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 # cat ./scripts/data/bajo_contrato_en.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING              -->   falta desarrollar todavia
 cat ./scripts/data/franja_horaria.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
-# cat ./scripts/data/cumple.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING                        -->   falta desarrollar todavia
+cat ./scripts/data/cumple.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 cat ./scripts/data/es_accedida.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 
+cat ./scripts/queries/empleados_5_fallas_o_area__no_permitida.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
+cat ./scripts/queries/empleados-no-prof-seguridad.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
+cat ./scripts/queries/vista_entradas_fallidas.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
+cat ./scripts/queries/restriccion-empleados-area.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 
 echo "Exito"
