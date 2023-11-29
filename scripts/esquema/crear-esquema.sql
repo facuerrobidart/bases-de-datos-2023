@@ -148,11 +148,11 @@ IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'bajo_
 BEGIN
     CREATE TABLE bajo_contrato_en (
         id_contrato INT,
-        id_personal INT,
+        id_personal_profesional_contratado INT,
         numero_area INT,
-        PRIMARY KEY (id_contrato, id_personal, numero_area),
+        PRIMARY KEY (id_contrato, id_personal),
         FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
-        FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+        FOREIGN KEY (id_personal) REFERENCES personal_profesional_contratado(id_personal),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
 
@@ -174,11 +174,11 @@ IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'cumpl
 BEGIN
     CREATE TABLE cumple (
         -- Un personal puede cumplir varias franjas horarias y puede acceder a varias areas en cada franja
-        id_personal INT,
+        id_personal_no_profesional INT,
         id_franja INT,
         numero_area INT,
         PRIMARY KEY (id_personal, id_franja, numero_area),
-        FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+        FOREIGN KEY (id_personal) REFERENCES personal_no_profesional(id_personal),
         FOREIGN KEY (id_franja) REFERENCES franja_horaria(id_franja),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
