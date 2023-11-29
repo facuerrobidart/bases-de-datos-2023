@@ -16,6 +16,8 @@ BEGIN
         nivel INT NOT NULL,
         FOREIGN KEY (nivel) REFERENCES nivel_seguridad(nivel)
     );
+
+    CREATE INDEX idx_area_nivel ON area (nivel);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'evento')
@@ -27,6 +29,8 @@ BEGIN
         id_area INT NOT NULL,
         FOREIGN KEY (id_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_evento_area ON evento (id_area);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'personal')
@@ -52,6 +56,9 @@ BEGIN
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_personal_jerarquico_area ON personal_jerarquico (numero_area);
+    CREATE INDEX idx_personal_jerarquico_personal ON personal_jerarquico (id_personal);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'especialidad')
@@ -70,6 +77,9 @@ BEGIN
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_especialidad)
     );
+
+    CREATE INDEX idx_personal_profesional_especialidad ON personal_profesional (id_especialidad);
+    CREATE INDEX idx_personal_profesional_personal ON personal_profesional (id_personal);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'personal_no_profesional')
@@ -80,6 +90,9 @@ BEGIN
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (id_nivel_seguridad) REFERENCES nivel_seguridad(nivel)
     );
+
+    CREATE INDEX idx_personal_no_profesional_nivel_seguridad ON personal_no_profesional (id_nivel_seguridad);
+    CREATE INDEX idx_personal_no_profesional_personal ON personal_no_profesional (id_personal);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'personal_profesional_permanente')
@@ -90,6 +103,9 @@ BEGIN
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_personal_profesional_permanente_area ON personal_profesional_permanente (numero_area);
+    CREATE INDEX idx_personal_profesional_permanente_personal ON personal_profesional_permanente (id_personal);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'personal_profesional_contratado')
@@ -98,6 +114,8 @@ BEGIN
         id_personal INT PRIMARY KEY,
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
     );
+
+    CREATE INDEX idx_personal_profesional_contratado_personal ON personal_profesional_contratado (id_personal);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'contrato_de_trabajo')
@@ -121,6 +139,9 @@ BEGIN
         FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
     );
+
+    CREATE INDEX idx_auditoria_contrato ON auditoria (id_contrato);
+    CREATE INDEX idx_auditoria_personal ON auditoria (id_personal);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'bajo_contrato_en')
@@ -131,8 +152,12 @@ BEGIN
         numero_area INT,
         PRIMARY KEY (id_contrato, id_personal, numero_area),
         FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
-        FOREIGN KEY (id_personal) REFERENCES personal(id_personal)
+        FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+        FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_bajo_contrato_en_contrato ON bajo_contrato_en (id_contrato);
+    CREATE INDEX idx_bajo_contrato_en_personal ON bajo_contrato_en (id_personal);
 END;
 
 
@@ -157,6 +182,10 @@ BEGIN
         FOREIGN KEY (id_franja) REFERENCES franja_horaria(id_franja),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_cumple_personal ON cumple (id_personal);
+    CREATE INDEX idx_cumple_franja ON cumple (id_franja);
+    CREATE INDEX idx_cumple_area ON cumple (numero_area);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'es_accedida')
@@ -173,6 +202,9 @@ BEGIN
         FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_es_accedida_personal ON es_accedida (id_personal);
+    CREATE INDEX idx_es_accedida_area ON es_accedida (numero_area);
 END;
 
 IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'acepta')
@@ -186,4 +218,8 @@ BEGIN
         FOREIGN KEY (id_contrato) REFERENCES contrato_de_trabajo(id_contrato),
         FOREIGN KEY (numero_area) REFERENCES area(numero_area)
     );
+
+    CREATE INDEX idx_acepta_personal ON acepta (id_personal);
+    CREATE INDEX idx_acepta_contrato ON acepta (id_contrato);
+    CREATE INDEX idx_acepta_area ON acepta (numero_area);
 END;
