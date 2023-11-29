@@ -1,4 +1,4 @@
-CREATE PROCEDURE empleados_5fallas_OAreaNoPermitida
+CREATE PROCEDURE empleados_5_fallas_o_area_no_permitida
 AS
   SELECT
     p.id_personal,
