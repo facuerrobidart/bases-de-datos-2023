@@ -8,7 +8,7 @@ BEGIN
     DECLARE @FechaHoraAcceso DATETIME = DATEADD(SECOND, -RAND() * 86400, '2023-11-26'); -- Entre '2023-11-26' y el pasado
     DECLARE @IdPersonalAcceso INT = CAST(RAND() * 150 + 1 AS INT);
     DECLARE @NumeroAreaAcceso INT = CAST(RAND() * 15 + 1 AS INT);
-    DECLARE @MetodoDeAcceso VARCHAR(100) = CASE WHEN RAND() > 0.5 THEN 'Tarjeta' ELSE 'Huella' END;
+    DECLARE @MetodoDeAcceso VARCHAR(100) = CASE WHEN RAND() > 0.5 THEN 'Contraseña' ELSE 'Huella' END;
     DECLARE @EstadoLectorHuellas VARCHAR(20) = CASE WHEN RAND() > 0.5 THEN 'Activo' ELSE 'Inactivo' END;
     DECLARE @IngresoOEgreso VARCHAR(20) = CASE WHEN RAND() > 0.5 THEN 'Ingreso' ELSE 'Egreso' END;
     DECLARE @EsAutorizado BIT = CAST(CASE WHEN RAND() > 0.2 THEN 1 ELSE 0 END AS BIT); -- 80% de probabilidad de ser autorizado

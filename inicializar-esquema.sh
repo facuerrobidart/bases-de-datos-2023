@@ -42,5 +42,6 @@ cat ./scripts/queries/empleados_5_fallas_o_area__no_permitida.sql | docker exec 
 cat ./scripts/queries/empleados-no-prof-seguridad.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 cat ./scripts/queries/vista_entradas_fallidas.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 cat ./scripts/queries/restriccion-empleados-area.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
+cat ./scripts/queries/validar_input_es_accedida.sql | docker exec -i $SQL_SERVER_CONTAINER_NAME /opt/mssql-tools/bin/sqlcmd $CONNECTION_STRING
 
 echo "Exito"
