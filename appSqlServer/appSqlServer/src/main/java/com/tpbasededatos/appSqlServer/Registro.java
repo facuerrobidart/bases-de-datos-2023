@@ -1,6 +1,8 @@
 package com.tpbasededatos.appSqlServer;
 
 import java.sql.Date;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Registro {
 
@@ -16,7 +18,7 @@ public class Registro {
 		private Date fecha_de_inicio;
 	    // Constructor
 	    public Registro( String nombre, String apellido, String dni, char genero, Date fechaNacimiento, String contraseña, String huella, int numero_area, Date fecha_de_inicio) {
-	        
+	        this.idPersonal = ThreadLocalRandom.current().nextInt(201, 1000);
 	        this.nombre = nombre;
 	        this.apellido = apellido;
 	        this.dni = dni;
